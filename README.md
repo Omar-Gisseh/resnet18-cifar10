@@ -1,6 +1,6 @@
 # Fine-Tuning ResNet-18 on CIFAR-10
 
-AI Final Group Project — Option A: Enhancing an Existing AI Model
+AI Final Group Project Option A: Enhancing an Existing AI Model
 
 ---
 
