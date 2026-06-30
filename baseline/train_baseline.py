@@ -37,10 +37,12 @@ classes = ['airplane','automobile','bird','cat','deer',
            'dog','frog','horse','ship','truck']
 
 # Model
+# Model
 model = models.resnet18(pretrained=True)
 model.fc = nn.Linear(model.fc.in_features, 10)  # CIFAR-10 has 10 classes
 model = model.to(device)
 
+# Loss & Optimizer
 # Loss & Optimizer
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
@@ -121,6 +123,7 @@ plt.tight_layout()
 plt.savefig("../results/baseline_results.png")
 print("\nChart saved to results/baseline_results.png")
 
+# Save Model
 # Save Model
 torch.save(model.state_dict(), "../results/baseline_model.pth")
 print("Model saved to results/baseline_model.pth")
