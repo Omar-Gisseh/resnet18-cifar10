@@ -1,7 +1,5 @@
-# =============================================
 # Baseline ResNet-18 on CIFAR-10
 # No modifications — pure out-of-the-box
-# =============================================
 
 import torch
 import torch.nn as nn
@@ -15,11 +13,11 @@ import seaborn as sns
 import numpy as np
 import time
 
-# ---- Device Configuration ----
+# Device Configuration
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Training on: {device}")
 
-# ---- Data Loading ----
+# Data Loading
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
@@ -38,16 +36,16 @@ testloader = torch.utils.data.DataLoader(
 classes = ['airplane','automobile','bird','cat','deer',
            'dog','frog','horse','ship','truck']
 
-# ---- Model ----
+# Model
 model = models.resnet18(pretrained=True)
 model.fc = nn.Linear(model.fc.in_features, 10)  # CIFAR-10 has 10 classes
 model = model.to(device)
 
-# ---- Loss & Optimizer ----
+# Loss & Optimizer
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
 
-# ---- Training ----
+# Training
 EPOCHS = 10
 train_losses = []
 val_accuracies = []
@@ -89,7 +87,7 @@ for epoch in range(EPOCHS):
 total_time = time.time() - start_time
 print(f"\nTraining complete in {total_time/60:.2f} minutes")
 
-# ---- Final Evaluation ----
+# Final Evaluation
 model.eval()
 all_preds = []
 all_labels = []
@@ -105,7 +103,7 @@ with torch.no_grad():
 print("\n--- Classification Report ---")
 print(classification_report(all_labels, all_preds, target_names=classes))
 
-# ---- Save Loss Curve ----
+# Save Loss Curve
 plt.figure(figsize=(10, 4))
 plt.subplot(1, 2, 1)
 plt.plot(train_losses, marker='o', color='steelblue')
@@ -123,6 +121,6 @@ plt.tight_layout()
 plt.savefig("../results/baseline_results.png")
 print("\nChart saved to results/baseline_results.png")
 
-# ---- Save Model ----
+# Save Model
 torch.save(model.state_dict(), "../results/baseline_model.pth")
 print("Model saved to results/baseline_model.pth")
