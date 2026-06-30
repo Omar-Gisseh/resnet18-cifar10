@@ -36,6 +36,7 @@ References
 He, K., Zhang, X., Ren, S., & Sun, J. (2016). Deep Residual Learning for Image Recognition. CVPR.
 Krizhevsky, A. (2009). Learning Multiple Layers of Features from Tiny Images.
 Loshchilov, I., & Hutter, F. (2017). SGDR: Stochastic Gradient Descent with Warm Restarts. ICLR.
+
 Authors
 Kingsley Ugochukwu Nnaemedo
 Omar Gisseh
